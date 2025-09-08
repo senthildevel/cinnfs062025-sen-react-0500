@@ -1,5 +1,6 @@
 import { useState, type MouseEvent } from "react";
-
+import Alert from "../Alert";
+import styles from "./ListGroup.module.css";
 // Interface - Defining Shape of the component
 
 interface Props {
@@ -31,6 +32,8 @@ const ListGroup = ({ items, title, onSelectItem }: Props) => {
 
   return (
     <>
+      <h1>List Group Component</h1>
+
       <h2>{title}</h2>
       {/* {items.length === 0 ? <p>No items found</p> : null} */}
 
@@ -39,9 +42,16 @@ const ListGroup = ({ items, title, onSelectItem }: Props) => {
       {items.length === 0 && <p>No items found</p>}
 
       {/* {getMessage()} */}
-      <ul className="list-group">
+      <ul className={[styles.listGroup, styles.highlight].join(" ")}>
         {items.map((item, index) => (
-          <li key={item} className={selectedIndex === index ? "list-group-item active" : "list-group-item"} onClick={() => onSelectItem(item)}>
+          <li
+            key={item}
+            className={selectedIndex === index ? "list-group-item active" : "list-group-item"}
+            onClick={() => {
+              setSelectedIndex(index);
+              onSelectItem(item);
+            }}
+          >
             {item}
           </li>
         ))}

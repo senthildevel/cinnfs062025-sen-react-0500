@@ -1,40 +1,22 @@
-import Counter from "./Counter";
-import ListGroup from "./ListGroup";
+import { createContext, useState } from "react";
+import Component1 from "./Component1";
+import Component2 from "./Component2";
+
+export const MyContext = createContext("");
 
 function App() {
-  // Javascript / Typecript
-  let title = "Courseinn Academy - Chennai";
+  const [val, setVal] = useState("Hello from context!");
 
-  // JSX - Javascript - XML
-  //return <h1 className="text-white p-3 bg-dark">{title}</h1>;
-
-  const cities = ["Chennai", "Banglore", "Kerala", "Madurai"];
-
-  const users = ["Hasim", "Kuberan", "Vijay", "Raihan"];
-
-  const handleClick = (item: string) => {
-    console.log("List Clicked", item);
+  const handleClick = () => {
+    setVal("Welcome to Courseinn Academy");
   };
-
   return (
     <>
-      <div className="container">
-        <h1 className="text-white p-3 bg-dark">{title}</h1>
-        <Counter />
-
-        <ListGroup items={cities} title="Cities" onSelectItem={handleClick} />
-
-        {/* <ListGroup items={users} title="Users" /> */}
-
-        {/* <div className="row">
-          <div className="col">
-            <ListGroup />
-          </div>
-          <div className="col">
-            <ListGroup />
-          </div>
-        </div> */}
-      </div>
+      <MyContext.Provider value={val}>
+        <Component1 clickButton={handleClick} />
+        <Component2 />
+        <button onClick={handleClick}>Update Value</button>
+      </MyContext.Provider>
     </>
   );
 }
