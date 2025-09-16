@@ -1,24 +1,13 @@
-import { createContext, useState } from "react";
-import Component1 from "./Component1";
-import Component2 from "./Component2";
+import Profile from "./Profile";
+import { UserList } from "./UserList";
 
-export const MyContext = createContext("");
-
-function App() {
-  const [val, setVal] = useState("Hello from context!");
-
-  const handleClick = () => {
-    setVal("Welcome to Courseinn Academy");
-  };
+const App = () => {
   return (
     <>
-      <MyContext.Provider value={val}>
-        <Component1 clickButton={handleClick} />
-        <Component2 />
-        <button onClick={handleClick}>Update Value</button>
-      </MyContext.Provider>
+      {/* <UserList /> */}
+      <Profile />
     </>
   );
-}
+};
 
 export default App;
